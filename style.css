@@ -19,7 +19,7 @@
 }
 
 .calcButton {
-    aspect-ratio: 1/1;
+    /* aspect-ratio: 1/1; */
     background-color: lightgray;
     display: flex;
     justify-content: center;

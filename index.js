@@ -17,8 +17,12 @@ function renderOneToNine(){
             const calcButton = document.createElement("div");
             calcButton.classList.add("calcButton");
             calcButton.style.flex = "1 0 auto";
-            calcButton.textContent = i*3+j+1;
             row.appendChild(calcButton);
+
+            const buttonText = document.createElement("p");
+            buttonText.textContent = i*3+j+1;
+            buttonText.classList.add("numeral");
+            calcButton.appendChild(buttonText);
         }
     }
 }
@@ -27,9 +31,13 @@ function renderZero(){
     const calcButton = document.createElement("div");
     calcButton.classList.add("calcButton");
     calcButton.style.flex = "2 0 auto";
-    calcButton.textContent = 0;
-    calcButton.style.aspectRatio = "2/1";
+    // calcButton.style.aspectRatio = "2/1";
     left.appendChild(calcButton);
+
+    const buttonText = document.createElement("p");
+    buttonText.textContent = 0;
+    buttonText.classList.add("numeral");
+    calcButton.appendChild(buttonText);
 }
 
 
