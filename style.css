@@ -3,6 +3,7 @@
     width: max-content;
     padding: 1em;
     border-radius: 16px;
+    height: 50vh;
 }
 
 .display {
@@ -12,4 +13,3 @@
     padding: 1em;
     border-radius: 4px;
 }
-
