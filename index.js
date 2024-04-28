@@ -19,13 +19,13 @@ function renderKeyboard(){
             }
             switch(i){
                 case 0:
-                    createButton(row,'+',selectOperation);
+                    createButton(row,'+',resolveOperation);
                     break;
                 case 1:
-                    createButton(row,'-',selectOperation);
+                    createButton(row,'-',resolveOperation);
                     break;
                 case 2:
-                    createButton(row,'*',selectOperation);
+                    createButton(row,'*',resolveOperation);
                     break;
             }
         } else if (i === 3) {
@@ -33,9 +33,9 @@ function renderKeyboard(){
             calcButton.style.flex = "2 0 auto";
             calcButton.style.margin = "8px 16px";
             createButton(row,'.');
-            createButton(row,'/',selectOperation);
+            createButton(row,'/',resolveOperation);
         } else {
-            createButton(row,`=`,selectOperation);
+            createButton(row,`=`,resolveOperation);
         }
     }
 }
@@ -51,15 +51,12 @@ function loadBuffer(value){
     }
 }
 
+function resolveOperation(selection){
+    operate();
+    selectOperation(selection);
+}
+
 function selectOperation(selection){
-    if(accumulator){
-        accumulator = operate(operator,Number(accumulator),Number(buffer));
-        buffer = null;
-        display.textContent = accumulator;
-    } else {
-        accumulator = buffer;
-        buffer = null
-    }
     switch(selection){
         case '+':
             operator = add;
@@ -72,6 +69,9 @@ function selectOperation(selection){
             break;
         case '/':
             operator = divide;
+            break;
+        case '=':
+            operator = null;
             break;
         default:
             display.textContent = "Error - invalid operation";
@@ -94,8 +94,18 @@ function createButton(parent,contentText,contentCallback){
     return calcButton
 }
 
-function operate(operator,firstValue,secondValue){
-    return operator(firstValue,secondValue);
+function operate(){
+    if(!buffer)
+        return
+    if(!accumulator){
+        accumulator = Number(buffer);
+    } else if (operator){
+        accumulator = operator(Number(accumulator),Number(buffer));
+    }
+    display.textContent = accumulator;
+    buffer = null;
+    operator = null;
+    return accumulator;
 }
 
 function add(a,b){
