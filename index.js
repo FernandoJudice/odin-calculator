@@ -14,33 +14,29 @@ function renderOneToNine(){
         left.appendChild(row);
 
         for (let j=0;j<3;j++) {
-            const calcButton = document.createElement("div");
-            calcButton.classList.add("calcButton");
-            calcButton.style.flex = "1 0 auto";
-            row.appendChild(calcButton);
-
-            const buttonText = document.createElement("span");
-            buttonText.textContent = i*3+j+1;
-            buttonText.classList.add("numeral");
-            calcButton.appendChild(buttonText);
+            createButton(row,i*3+j+1)
         }
     }
 }
 
 function renderZero(){
-    const calcButton = document.createElement("div");
-    calcButton.classList.add("calcButton");
+    const calcButton = createButton(left,0);
     calcButton.style.flex = "2 0 auto";
-    // calcButton.style.aspectRatio = "2/1";
-    left.appendChild(calcButton);
-
-    const buttonText = document.createElement("span");
-    buttonText.textContent = 0;
-    buttonText.classList.add("numeral");
-    calcButton.appendChild(buttonText);
 }
 
+function createButton(parent,contentText,contentCallback){
+    const calcButton = document.createElement("div");
+    calcButton.classList.add("calcButton");
+    calcButton.style.flex = "1 0 auto";
+    parent.appendChild(calcButton);
 
+    const buttonText = document.createElement("span");
+    buttonText.textContent = contentText;
+    buttonText.classList.add("numeral");
+    calcButton.appendChild(buttonText);
+
+    return calcButton
+}
 
 function operate(operator,firstValue,secondValue){
     return operator(firstValue,secondValue);
