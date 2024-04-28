@@ -6,6 +6,19 @@
     height: max-content;
 }
 
+.keyboard {
+    display: flex;
+    padding: 1em 0;
+}
+
+.left,.right {
+    flex: auto;
+}
+
+.left {
+    flex: 3 0 auto;
+}
+
 .display {
     height: 1em;
     width: 16em;
