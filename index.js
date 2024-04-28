@@ -15,7 +15,7 @@ function renderKeyboard(){
         left.appendChild(row);
 
         if (i === 0) {
-            createButton(row,'Display size', clearAll);
+            createButton(row,'Display size', () => resizeDisplay(prompt()));
             createButton(row,'C', clearAll);
             createButton(row,'<=', clearAll);
             
@@ -61,6 +61,16 @@ function addDecimal() {
     if(buffer){
         buffer += '.';
         renderDisplay(buffer);
+    }
+}
+
+function resizeDisplay(value) {
+    if(Number(value)){
+        displaySize = Math.round(Number(value));
+        displaySize = Math.max(displaySize,4);
+        displaySize = Math.min(displaySize,16);
+    } else {
+        alert("Please, insert a number between 4 and 16");
     }
 }
 
