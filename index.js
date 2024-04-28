@@ -17,7 +17,7 @@ function renderKeyboard(){
         if (i === 0) {
             createButton(row,'Display size', () => resizeDisplay(prompt()));
             createButton(row,'C', clearAll);
-            createButton(row,'<=', clearAll);
+            createButton(row,'<=', clearLastNumber);
             
         } else if (i<4){
             for (let j=0;j<3;j++) {
@@ -60,6 +60,13 @@ function addDecimal() {
         return
     if(buffer){
         buffer += '.';
+        renderDisplay(buffer);
+    }
+}
+
+function clearLastNumber(){
+    if (buffer) {
+        buffer = buffer.slice(0,-1);
         renderDisplay(buffer);
     }
 }
