@@ -8,11 +8,6 @@ const display = document.querySelector(".display");
 
 renderKeyboard();
 
-document.addEventListener('keydown', function(event) {
-    // Log the key code of the pressed key
-    console.log('Key pressed:', event.key);
-});
-
 document.addEventListener('keydown', (event) => onKeyboardPress(event.key));
 
 function renderKeyboard(){
