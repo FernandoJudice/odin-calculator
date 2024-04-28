@@ -8,6 +8,13 @@ const display = document.querySelector(".display");
 
 renderKeyboard();
 
+document.addEventListener('keydown', function(event) {
+    // Log the key code of the pressed key
+    console.log('Key pressed:', event.key);
+});
+
+document.addEventListener('keydown', (event) => onKeyboardPress(event.key));
+
 function renderKeyboard(){
     for (let i=0; i<6; i++) {
         const row = document.createElement("div");
@@ -46,7 +53,22 @@ function renderKeyboard(){
     }
 }
 
-
+function onKeyboardPress(key){
+    if(Number(key))
+        loadBuffer(key);
+    if(key === `.`){
+        addDecimal();
+    }
+    if(key === 'Backspace' || key === 'Delete'){
+        clearLastNumber();
+    }
+    if(key === 'Enter' || key === '='){
+        resolveOperation('=');
+    }
+    if('+-*/'.includes(key)){
+        resolveOperation(key);
+    }
+}
 
 function clearAll() {
     buffer = "";
@@ -68,6 +90,8 @@ function clearLastNumber(){
     if (buffer) {
         buffer = buffer.slice(0,-1);
         renderDisplay(buffer);
+    } else {
+        clearAll()
     }
 }
 
