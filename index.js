@@ -28,6 +28,7 @@ function renderZero(){
     calcButton.classList.add("calcButton");
     calcButton.style.flex = "2 0 auto";
     calcButton.textContent = 0;
+    calcButton.style.aspectRatio = "2/1";
     left.appendChild(calcButton);
 }
 
