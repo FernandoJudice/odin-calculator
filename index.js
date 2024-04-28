@@ -6,8 +6,8 @@ const left = document.querySelector(".left");
 
 renderKeyboard();
 
-function renderOneToNine(){
-    for (let i=0; i<4; i++) {
+function renderKeyboard(){
+    for (let i=0; i<5; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
         left.appendChild(row);
@@ -27,12 +27,14 @@ function renderOneToNine(){
                     createButton(row,'*');
                     break;
             }
-        } else {
+        } else if (i === 3) {
             const calcButton = createButton(row,0);
             calcButton.style.flex = "2 0 auto";
             calcButton.style.margin = "8px 16px";
             createButton(row,'.');
             createButton(row,'/');
+        } else {
+            createButton(row,`=`);
         }
     }
 }
