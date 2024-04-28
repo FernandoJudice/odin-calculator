@@ -3,9 +3,11 @@ let operator;
 let buffer;
 
 const left = document.querySelector(".left");
+const right = document.querySelector(".right");
 
 renderOneToNine();
 renderZero();
+renderOperations();
 
 function renderOneToNine(){
     for (let i=0; i<3; i++) {
@@ -22,6 +24,13 @@ function renderOneToNine(){
 function renderZero(){
     const calcButton = createButton(left,0);
     calcButton.style.flex = "2 0 auto";
+}
+
+function renderOperations(){
+    createButton(right,'+');
+    createButton(right,'+');
+    createButton(right,'*');
+    createButton(right,'/');
 }
 
 function createButton(parent,contentText,contentCallback){
