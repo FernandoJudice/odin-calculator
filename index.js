@@ -1,3 +1,11 @@
+let firstValue;
+let operator;
+let secondValue;
+
+function operate(operator,firstValue,secondValue){
+    return operator(firstValue,secondValue);
+}
+
 function add(a,b){
     return a+b
 }
