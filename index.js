@@ -1,7 +1,7 @@
 let accumulator;
 let operator;
 let buffer = "";
-let displaySize = 16;
+let displaySize = 4;
 
 const left = document.querySelector(".left");
 const display = document.querySelector(".display");
@@ -48,7 +48,7 @@ function clearAll() {
     buffer = "";
     accumulator = null;
     operator = null;
-    display.textContent = "";
+    renderDisplay("");
 }
 
 function addDecimal() {
@@ -56,8 +56,28 @@ function addDecimal() {
         return
     if(buffer){
         buffer += '.';
-        display.textContent = buffer;
+        renderDisplay(buffer);
     }
+}
+
+function renderDisplay(value){
+    let compactValue = value;
+    console.log(value);
+    
+    if(Number(value)) {
+        const parts = value.split('.');
+
+        if (parts[0].length > displaySize) {
+            let exp = parts[0].length - displaySize + 1;
+            compactValue = Math.round(Number(value)/(10**(exp+1))); // exp + 1 to account for the E symbol in exponent
+            compactValue += 'E'
+            compactValue += exp;
+        }
+
+        
+    }
+
+    display.textContent = compactValue;
 }
 
 function loadBuffer(value){
@@ -70,7 +90,7 @@ function loadBuffer(value){
             buffer = "";
         } 
         buffer += value;
-        display.textContent = buffer;
+        renderDisplay(buffer);
     }
 }
 
@@ -97,7 +117,7 @@ function selectOperation(selection){
             operator = null;
             break;
         default:
-            display.textContent = "Error - invalid operation";
+            renderDisplay("Error - invalid operation");
             break;
     }
 }
@@ -125,7 +145,7 @@ function operate(){
     } else if (operator){
         accumulator = operator(Number(accumulator),Number(buffer));
     }
-    display.textContent = accumulator;
+    renderDisplay(String(accumulator));
     buffer = "";
     operator = null;
     return accumulator;
