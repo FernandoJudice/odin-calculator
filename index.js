@@ -1,6 +1,7 @@
 let accumulator;
 let operator;
-let buffer;
+let buffer = "";
+let displaySize = 16;
 
 const left = document.querySelector(".left");
 const display = document.querySelector(".display");
@@ -41,8 +42,10 @@ function renderKeyboard(){
     }
 }
 
+
+
 function clearAll() {
-    buffer = null;
+    buffer = "";
     accumulator = null;
     operator = null;
     display.textContent = "";
@@ -58,6 +61,9 @@ function addDecimal() {
 }
 
 function loadBuffer(value){
+    if(buffer.length >= displaySize)
+        return
+
     if (!isNaN(Number(value))) {
         if (!buffer) {
             display.textContent = "";
@@ -120,7 +126,7 @@ function operate(){
         accumulator = operator(Number(accumulator),Number(buffer));
     }
     display.textContent = accumulator;
-    buffer = null;
+    buffer = "";
     operator = null;
     return accumulator;
 }
