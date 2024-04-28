@@ -3,6 +3,7 @@ let operator;
 let buffer;
 
 const left = document.querySelector(".left");
+const display = document.querySelector(".display");
 
 renderKeyboard();
 
@@ -14,7 +15,7 @@ function renderKeyboard(){
 
         if (i<3){
             for (let j=0;j<3;j++) {
-                createButton(row,i*3+j+1)
+                createButton(row,i*3+j+1,loadBuffer)
             }
             switch(i){
                 case 0:
@@ -28,7 +29,7 @@ function renderKeyboard(){
                     break;
             }
         } else if (i === 3) {
-            const calcButton = createButton(row,0);
+            const calcButton = createButton(row,0, loadBuffer);
             calcButton.style.flex = "2 0 auto";
             calcButton.style.margin = "8px 16px";
             createButton(row,'.');
@@ -36,6 +37,13 @@ function renderKeyboard(){
         } else {
             createButton(row,`=`);
         }
+    }
+}
+
+function loadBuffer(value){
+    if (!isNaN(Number(value))) {
+        buffer += Number(value);
+        display.textContent += value;
     }
 }
 
@@ -48,6 +56,7 @@ function createButton(parent,contentText,contentCallback){
     const buttonText = document.createElement("span");
     buttonText.textContent = contentText;
     buttonText.classList.add("numeral");
+    buttonText.onclick = (e) => contentCallback(e.target.textContent);
     calcButton.appendChild(buttonText);
 
     return calcButton
