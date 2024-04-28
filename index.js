@@ -3,34 +3,38 @@ let operator;
 let buffer;
 
 const left = document.querySelector(".left");
-const right = document.querySelector(".right");
 
-renderOneToNine();
-renderZero();
-renderOperations();
+renderKeyboard();
 
 function renderOneToNine(){
-    for (let i=0; i<3; i++) {
+    for (let i=0; i<4; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
         left.appendChild(row);
 
-        for (let j=0;j<3;j++) {
-            createButton(row,i*3+j+1)
+        if (i<3){
+            for (let j=0;j<3;j++) {
+                createButton(row,i*3+j+1)
+            }
+            switch(i){
+                case 0:
+                    createButton(row,'+');
+                    break;
+                case 1:
+                    createButton(row,'-');
+                    break;
+                case 2:
+                    createButton(row,'*');
+                    break;
+            }
+        } else {
+            const calcButton = createButton(row,0);
+            calcButton.style.flex = "2 0 auto";
+            calcButton.style.margin = "8px 16px";
+            createButton(row,'.');
+            createButton(row,'/');
         }
     }
-}
-
-function renderZero(){
-    const calcButton = createButton(left,0);
-    calcButton.style.flex = "2 0 auto";
-}
-
-function renderOperations(){
-    createButton(right,'+');
-    createButton(right,'+');
-    createButton(right,'*');
-    createButton(right,'/');
 }
 
 function createButton(parent,contentText,contentCallback){
