@@ -33,7 +33,7 @@ function renderKeyboard(){
             const calcButton = createButton(row,0, loadBuffer);
             // calcButton.style.flex = "2 0 auto";
             // calcButton.style.margin = "8px 16px";
-            createButton(row,'.');
+            createButton(row,'.',addDecimal);
             createButton(row,'/',resolveOperation);
         } else {
             createButton(row,`=`,resolveOperation);
@@ -46,6 +46,15 @@ function clearAll() {
     accumulator = null;
     operator = null;
     display.textContent = "";
+}
+
+function addDecimal() {
+    if(buffer.includes('.'))
+        return
+    if(buffer){
+        buffer += '.';
+        display.textContent = buffer;
+    }
 }
 
 function loadBuffer(value){
