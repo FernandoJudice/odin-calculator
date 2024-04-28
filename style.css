@@ -1,0 +1,15 @@
+.container {
+    background-color: gray;
+    width: max-content;
+    padding: 1em;
+    border-radius: 16px;
+}
+
+.display {
+    height: 1em;
+    width: 16em;
+    background-color: whitesmoke;
+    padding: 1em;
+    border-radius: 4px;
+}
+
