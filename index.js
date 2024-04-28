@@ -29,15 +29,23 @@ function renderKeyboard(){
                     break;
             }
         } else if (i === 3) {
+            createButton(row,'C', clearAll);
             const calcButton = createButton(row,0, loadBuffer);
-            calcButton.style.flex = "2 0 auto";
-            calcButton.style.margin = "8px 16px";
+            // calcButton.style.flex = "2 0 auto";
+            // calcButton.style.margin = "8px 16px";
             createButton(row,'.');
             createButton(row,'/',resolveOperation);
         } else {
             createButton(row,`=`,resolveOperation);
         }
     }
+}
+
+function clearAll() {
+    buffer = null;
+    accumulator = null;
+    operator = null;
+    display.textContent = "";
 }
 
 function loadBuffer(value){
