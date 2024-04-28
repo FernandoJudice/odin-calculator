@@ -19,7 +19,7 @@ function renderOneToNine(){
             calcButton.style.flex = "1 0 auto";
             row.appendChild(calcButton);
 
-            const buttonText = document.createElement("p");
+            const buttonText = document.createElement("span");
             buttonText.textContent = i*3+j+1;
             buttonText.classList.add("numeral");
             calcButton.appendChild(buttonText);
@@ -34,7 +34,7 @@ function renderZero(){
     // calcButton.style.aspectRatio = "2/1";
     left.appendChild(calcButton);
 
-    const buttonText = document.createElement("p");
+    const buttonText = document.createElement("span");
     buttonText.textContent = 0;
     buttonText.classList.add("numeral");
     calcButton.appendChild(buttonText);

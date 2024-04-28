@@ -3,7 +3,7 @@
     width: max-content;
     padding: 1em;
     border-radius: 16px;
-    height: 50vh;
+    height: max-content;
 }
 
 .display {
@@ -27,4 +27,5 @@
     color: blue;
     border-radius: 4px;
     margin: 8px;
+    padding: 1em 0;
 }
