@@ -15,10 +15,10 @@ function renderKeyboard(){
         const row = document.createElement("div");
         row.classList.add("row");
         left.appendChild(row);
-
+        
         if (i === 0) {
             createButton(row,'Display size', () => resizeDisplay(prompt()));
-            createButton(row,'C', clearAll);
+            createButton(row,'C', clearAll, "clear");
             createButton(row,'<=', clearLastNumber);
             
         } else if (i<4){
@@ -27,13 +27,13 @@ function renderKeyboard(){
             }
             switch(i){
                 case 1:
-                    createButton(row,'+',resolveOperation);
+                    createButton(row,'+',resolveOperation,"operator");
                     break;
                 case 2:
-                    createButton(row,'-',resolveOperation);
+                    createButton(row,'-',resolveOperation,"operator");
                     break;
                 case 3:
-                    createButton(row,'*',resolveOperation);
+                    createButton(row,'*',resolveOperation,"operator");
                     break;
             }
         } else if (i === 4) {
@@ -41,9 +41,9 @@ function renderKeyboard(){
             calcButton.style.flex = "2 0 auto";
             calcButton.style.padding = "1em 12px";
             createButton(row,'.',addDecimal);
-            createButton(row,'/',resolveOperation);
+            createButton(row,'/',resolveOperation,"operator");
         } else {
-            createButton(row,`=`,resolveOperation);
+            createButton(row,`=`,resolveOperation,"equal");
         }
     }
 }
@@ -163,16 +163,17 @@ function selectOperation(selection){
     }
 }
 
-function createButton(parent,contentText,contentCallback){
+function createButton(parent,contentText,contentCallback,newClass){
     const calcButton = document.createElement("button");
     calcButton.classList.add("calcButton");
     calcButton.style.flex = "1 0 auto";
     calcButton.onclick = (e) => contentCallback(e.target.textContent);
+    if(newClass)
+        calcButton.classList.add(newClass);
     parent.appendChild(calcButton);
 
     const buttonText = document.createElement("span");
     buttonText.textContent = contentText;
-    buttonText.classList.add("numeral");
     calcButton.appendChild(buttonText);
 
     return calcButton

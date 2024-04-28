@@ -1,9 +1,16 @@
+body {
+    display: flex;
+    justify-content: center;
+    color: #293241;
+}
+
 .container {
-    background-color: gray;
+    background-color: #98c1d9;
     width: max-content;
     padding: 1em;
     border-radius: 16px;
     height: max-content;
+    border: solid 1px #3d5A80;
 }
 
 .keyboard {
@@ -33,12 +40,29 @@
 }
 
 .calcButton {
-    background-color: lightgray;
+    background-color: #e0fbfc;
     display: flex;
     justify-content: center;
     align-content: center;
-    color: blue;
     border-radius: 4px;
     margin: 8px;
     padding: 1em 0;
+    border-color: #3d5A80;
+}
+
+.calcButton.operator {
+    color: #3066be;
+    font-weight: bold;
+}
+
+.calcButton.equal {
+    background-color: #3d5A80;
+    color:#e0fbfc;
+    font-weight: bold;
+}
+
+.calcButton.clear {
+    color: #ee6c4d;
+    font-weight: bold;
+
 }
