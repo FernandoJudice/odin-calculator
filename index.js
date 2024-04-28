@@ -69,12 +69,13 @@ function renderDisplay(value){
 
         if (parts[0].length > displaySize) {
             let exp = parts[0].length - displaySize + 1;
-            compactValue = Math.round(Number(value)/(10**(exp+1))); // exp + 1 to account for the E symbol in exponent
+            compactValue = String(Math.round(Number(value)/(10**(exp+1)))); // exp + 1 to account for the E symbol in exponent
             compactValue += 'E'
             compactValue += exp;
+        } else if (value.length > displaySize) {
+            let decimalSize = displaySize - parts[0].length - 1;
+            compactValue = String(Number(value).toFixed(decimalSize));
         }
-
-        
     }
 
     display.textContent = compactValue;
