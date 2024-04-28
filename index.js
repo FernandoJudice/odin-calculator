@@ -9,31 +9,35 @@ const display = document.querySelector(".display");
 renderKeyboard();
 
 function renderKeyboard(){
-    for (let i=0; i<5; i++) {
+    for (let i=0; i<6; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
         left.appendChild(row);
 
-        if (i<3){
+        if (i === 0) {
+            createButton(row,'Display size', clearAll);
+            createButton(row,'C', clearAll);
+            createButton(row,'<=', clearAll);
+            
+        } else if (i<4){
             for (let j=0;j<3;j++) {
-                createButton(row,i*3+j+1,loadBuffer)
+                createButton(row,(i-1)*3+j+1,loadBuffer)
             }
             switch(i){
-                case 0:
+                case 1:
                     createButton(row,'+',resolveOperation);
                     break;
-                case 1:
+                case 2:
                     createButton(row,'-',resolveOperation);
                     break;
-                case 2:
+                case 3:
                     createButton(row,'*',resolveOperation);
                     break;
             }
-        } else if (i === 3) {
-            createButton(row,'C', clearAll);
+        } else if (i === 4) {
             const calcButton = createButton(row,0, loadBuffer);
-            // calcButton.style.flex = "2 0 auto";
-            // calcButton.style.margin = "8px 16px";
+            calcButton.style.flex = "2 0 auto";
+            calcButton.style.padding = "1em 12px";
             createButton(row,'.',addDecimal);
             createButton(row,'/',resolveOperation);
         } else {
